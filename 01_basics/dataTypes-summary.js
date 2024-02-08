@@ -47,4 +47,43 @@ const bigNumber = 98765432123456789n
  * Link to read
  * 
  * https://262.ecma-international.org/5.1/#sec-11.4.3
- */
+
+
+
++++++++++++++++++++++++++ stack and heap memory +++++++++++++++++++++++++++++++++++
+
+// stack(Primitive), Heap(Non-Primitive)
+ stack(Primitive): 1. Primitive Datatype jitane bhi h wo sab me stack memory use hota h 
+  2. jab bhi stack memory use hoti h means, jo bhi aapne variable declare kiya h uska aapko COPY milega
+
+  Example of stack in which we get the data copy: 
+        
+let myYoutubeName = "shempytamrakar"
+let anothername = myYoutubeName
+anothername = "priyanktamrakar"
+
+console.log(myYoutubeName); // shempytamrakar
+console.log(anothername); // priyanktamrakar
+
+
+Heap(Non-Primitive): 1. Non-Primitive Datatype jitane bhi h wo sab me heap memory use hota h 
+                    2. jab bhi koi memory heap k ander define hoti h ya koi object ya kuch bhi 
+                    heap memory k andr jaati h to waha se apne ko REFERENCE milta h original value ka
+                    means jo bhi change karenge wo original value me change karega.
+
+  Example of heap in which we get the data reference: 
+
+  let userOne = {
+     email: "user@google.com",
+     upi: "user@ybl"
+  }
+
+  let userTwo = userOne
+
+  userTwo.email = "shempy@google.com"
+
+  console.log(userOne.email); // shempy@google.com
+  console.log(userTwo.email); // shempy@google.com
+  because of referencehere changes in original memory.
+*/
+
