@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | Chai aur code</title>
+</head>
+<body style="background-color: black; color: white;">
+    <div class="parent">
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+        <div class="day">Friday</div>
+        <div class="day">Saturday</div>
+        <div class="day">Sunday</div>
+    </div>
+
+</body>
+<script>
+    //parent call
+const parent = document.querySelector('.parent');
+// console.log(parent);
+
+// //children property isme HTML collection mila
+// console.log(parent.children);
+
+// //likely use as a array and access the html code
+// console.log(parent.children[1]);
+
+// //here we can get specific value of that code
+// console.log(parent.children[1].innerHTML);
+
+//yaha normal for loop use kiya hai forEach nahi kuki usk liye convert karna padhta pehale parent ko
+// for (let i = 0; i < parent.children.length; i++) {
+//     //yaha ek ek kark days print honge
+//     console.log(parent.children[i].innerHTML);
+    
+// }
+// //yaha is form me styling bhi kar sakte hai
+// parent.children[1].style.color = 'orange'
+
+// parent se child tak aa gye but child ka first element  ya last element 
+//direct access kar sakte hai  aage kaam me aata hai jaha direct first ko le k condi.
+//ya last ko le k laganahota hai isme pura html tag milega first ka or last ka
+
+//parent to child move kar rahe hai 
+// console.log(parent.firstElementChild);
+// console.log(parent.lastElementChild);
+
+//child to parent karenge yaha
+const dayOne = document.querySelector('.day');
+// console.log(dayOne);
+
+// //parent par jaane k liye
+// console.log(dayOne.parentElement);
+
+// //siblings ko access karne k liye means just next
+// console.log(dayOne.nextElementSibling);
+
+//ye saari nodelist provide karega parent ki 
+//isme text jo aata hai wo enter karte hai usko text likhta hai
+console.log("NODES: ", parent.childNodes);
+</script>
+
+</html>

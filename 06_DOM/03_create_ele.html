@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHai aur code</title>
+</head>
+<body style="background-color: black; color: white;">
+    
+</body>
+<script>
+
+    /*ye hum script me element create karna sikh rahe hai 
+     but ye abhi screen par nahi dikh raha hai
+     NOTE: ye jo bhi create kar rahe hai wo sab memory me ho raha hai.
+     isliye display nahi ho raha hai screen par 
+     kuki abhi tak humne attach nahi kiya hai  
+     attach tab hoga jab document ko kahenge ki is child ko attach karo
+     */ 
+    const div = document.createElement('div');
+
+    console.log(div);
+    /* output
+    <div></div>*/    
+
+    //ab upar toh humne div create kar liya but properties dena hai toh aise karenge
+    //jisme se kuch toh bydefault hai toh access hogi baaki custom k liye 
+    //setAttribut ka use karenge
+
+    div.className = 'main'
+    /*output:
+     <div class="main"></div>*/
+
+    div.id = Math.round(Math.random() * 10 + 1)
+    /*output
+        <div class="main" id="2"></div>
+        NOTE: and every type we get random value of id
+    */
+
+   //here if we want to add custom property so we use setAttribut()
+   div.setAttribute("title", "generated title")
+   /*output
+   <div class="main" id="9" title="generated title"></div>
+   */
+
+    // here we can give some styling also
+    div.style.backgroundColor = 'green'
+    div.style.padding = '12px'
+    div.innerText = 'chai aur code'
+    /* output is: 
+   <div class="main" id="9" title="generated title" 
+   style="background-color: green; padding: 12px;">chai aur code</div>
+    */
+   
+    //but the most preferable code to add text is :
+  const addText = document.createTextNode('chai aur code')
+    div.appendChild(addText)
+
+    //here now whole above code we are going to attach in body
+    document.body.appendChild(div)
+</script>
+</html>
