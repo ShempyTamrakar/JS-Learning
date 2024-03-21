@@ -7,7 +7,8 @@
 
 ## project 1
 
-```javascript
+```javascript 
+// type 1 in this we can change background color on click but we can't reset our background without refeshing
 console.log("hitesh")
 const buttons = document.querySelectorAll('.button');
 const body = document.querySelector('body');
@@ -33,40 +34,115 @@ buttons.forEach(function (button) {
   });
 });
 
+// type 2 in this we can change background color on click but as well as reset our background without refeshing
 
+const buttons = document.querySelectorAll('.button')
+const body = document.querySelector('body')
+let currentColor = '';
+buttons.forEach( (button) => {
+button.addEventListener('click', (event) => {
+    const clickedColor = event.target.id;
+    if (currentColor === clickedColor) {
+        // Reset background color to white
+        body.style.backgroundColor = 'white';
+        body.style.color = 'black'; // Reset text color as well
+        event.target.style.boxShadow = ''; // Remove box shadow
+        currentColor = ''; // Reset current color
+    } else {
+        switch (clickedColor) {
+            case 'grey':
+            case 'orange':
+            case 'blue':
+            case 'red':
+                body.style.backgroundColor = clickedColor;
+                body.style.color = 'white';
+                event.target.style.boxShadow = '5px 5px 5px 8px black';
+                currentColor = clickedColor; // Update current color
+                break;
+            default:
+                break;
+        }
+    }
+
+})
+    
+})
 ```
 
 ## project 2 solution
 
 ```javascript
 const form = document.querySelector('form');
-// this usecase will give you empty
-// const height = parseInt(document.querySelector('#height').value)
+/* NOTE: if we declare height and weight before eventListener fun,
+then  this usecase will give you empty value.
 
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
+const height = parseInt(document.querySelector('#height').value);
+const weight = parseInt(document.querySelector('#weight').value);
+*/
 
-  const height = parseInt(document.querySelector('#height').value);
-  const weight = parseInt(document.querySelector('#weight').value);
-  const results = document.querySelector('#results');
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    //jab bhi event se value aayegi to hamesha string me milti hai isliye parseInt use kiya hai
+    const height = parseInt(document.querySelector('#height').value);
+    const weight = parseInt(document.querySelector('#weight').value);
 
-  if (height === '' || height < 0 || isNaN(height)) {
-    results.innerHTML = `Please give a valid height ${height}`;
-  } else if (weight === '' || weight < 0 || isNaN(weight)) {
-    results.innerHTML = `Please give a valid weight ${weight}`;
-  } else {
-    const bmi = (weight / ((height * height) / 10000)).toFixed(2);
-    //show the result
-    results.innerHTML = `<span>${bmi}</span>`;
-  }
-});
+    
+    //parsInt ki need nahi hai kuki ye sirf ek event hai
+    const results = document.querySelector('#results')
 
+    if (height === '' || height < 0 || isNaN(height)) {
+        results.innerHTML = `Please enter vaild number ${height}`
+    } else if(weight === '' || weight < 0 || isNaN(weight)){
+        results.innerHTML = `Please enter vaild number ${weight}`
+    } else{
+        const bmi = (weight / ((height * height) / 10000)).toFixed(2);
+        
+        //show result 
+        
+        //using if else nested loop
+        // if(bmi < 18.6){
+        //     results.innerHTML = `You are Under Weight bmi is: ${bmi}`
+        // }else if(bmi <= 24.9 ){
+        //     results.innerHTML = `You are in Normal Range bmi is: ${bmi}`
+        // }else{
+        //     results.innerHTML = `You are Overweight bmi is: ${bmi}`
+        // }
+        
+        //using ternary operator
+        let resultsElement = document.querySelector("#results");
+        resultsElement.innerHTML = bmi < 18.6 ? `You are Under Weight bmi is: ${bmi}` 
+        :bmi <= 24.9 ? `You are in Normal Range between bmi is: ${bmi}` 
+        : `You are Overweight bmi is: ${bmi}` ; 
+
+        // Show results box
+        resultsElement.style.display = "block";
+
+        // // Clear input fields if we want to clear after click and only msg will display then use this code
+        // document.querySelector("#weight").value = "";
+        // document.querySelector("#height").value = "";
+    }
+})
 
 ```
 
 ## project 3 solution code
 
 ```javascript
+// 1st way to code to display clock -
+
+// let Hour = document.getElementById('hour')
+// let Min = document.getElementById('min')
+// let Sec = document.getElementById('sec')
+
+// setInterval(() => {
+//     let currentTime = new Date();
+//     Hour.innerHTML =  (currentTime.getHours() < 10 ? "0" : "") + currentTime.getHours();
+//     Min.innerHTML =  (currentTime.getMinutes() < 10 ? "0" : "") + currentTime.getMinutes();
+//     Sec.innerHTML =  (currentTime.getSeconds() < 10 ? "0" : "") + currentTime.getSeconds();
+// }, 1000)
+// console.log(currentTime.getHours());
+
+//2nd way to display the time
 const clock = document.getElementById('clock');
 // const clock = document.querySelector('#clock')
 

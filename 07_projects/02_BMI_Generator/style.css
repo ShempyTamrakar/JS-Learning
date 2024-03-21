@@ -1,0 +1,86 @@
+body{
+  background-color: #797978;
+}
+ .container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center;
+    height: 100vh; /* Adjust as needed */
+    position: relative;
+  }
+  nav {
+    display: flex; /* Ensure anchors stay in the same line */
+    font-size: x-large;
+  }
+  
+  nav a {
+    text-decoration: none; /* Remove underline */
+    color: white; /* Change color */
+    margin-right: 20px; /* Adjust spacing between links */
+    border: 1px solid white; /* Add border */
+    padding: 5px 10px; /* Add padding to give space around the text */
+  }
+  nav a:hover {
+    background-color: white; /* Change background color on hover */
+    color: black; /* Change font color on hover */
+  }
+  nav a:last-child {
+    margin-right: 0; /* Remove margin from the last link */
+  }
+  #height,
+  #weight {
+    width: 150px;
+    height: 25px;
+  }
+  
+  #weight-guide {
+    margin-top: 25px;
+    color: white;
+    font-style: oblique;
+    font-weight: bold;
+    font-size: large;
+    border: 1px solid white;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  /* #results {
+    font-size: 35px;
+    margin-left: 90px;
+    margin-top: 20px;
+    color: rgb(241, 241, 241);
+  } */
+  
+  #results{
+  position: absolute;
+  font-size: 25px;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-top: 1px solid #ccc;
+  display: none;
+  }
+  button {
+    width: 150px;
+    height: 35px;
+    margin-left: 90px;
+    margin-top: 25px;
+    background-color: #fff;
+    border-radius: 8px;
+    color: #212121;
+    text-decoration: solid;
+    border: 2px solid #212121;
+    font-size: 20px;
+  }
+  button:hover{
+    background-color: black; /* Change background color on hover */
+    color: white; /* Change font color on hover */
+  }
+  h1,label {
+    padding-left: 15px;
+    padding-top: 25px;
+    color: #fff;
+  }
+  
