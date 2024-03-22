@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai aur code | remove dom element</title>
+   
+</head>
+<body style="background-color: #212121; color: white;">
+    <ul class="language">
+        <li>JavaScript</li>
+    </ul>
+</body>
+<script>
+    addLanguage = (langName) => {
+        //1. we will create list item and creating an element 
+        const li = document.createElement('li')
+        li.innerHTML = `${langName}`
+        //2. ul me set karna hai or last me append karna hai
+        //but ye aise karne me ek problem hai 
+        //kuki jitani baar chalega utani baar last k liye tree traverse hoga
+        //jo ki sahi nahi hai big data k case me 
+        document.querySelector('.language').appendChild(li)
+    }
+    addLanguage('python')
+    addLanguage('typeScript')
+
+    //thoda optimzed way me karenge ye big projects k liye acchi practise hai
+        addOptiLanguage = (langName) => {
+            const li = document.createElement('li')
+            li.appendChild(document.createTextNode(langName))
+            document.querySelector('.language').appendChild(li)
+        }
+        addOptiLanguage('golang')
+
+        //Edit value
+        const secondlang = document.querySelector('li:nth-child(2)')
+      
+        //1st way ye optimized way nahi hai innerHtml se add karna dekha
+        // secondlang.innerHTML = "Mojo"
+
+        //2nd way optimized way is pura ek element bana k bhi change karna dekha
+        const newli = document.createElement('li')
+        
+        //yaha abhi li bana text add kiya but abhi kahi usko add nahi kiya
+        newli.textContent ='Mojo'
+        
+        //add karne k liye 
+        secondlang.replaceWith(newli)
+
+        //edit example 2
+        const firstLang = document.querySelector('li:first-child')
+        //3rd way outerHTML se change dekha
+        firstLang.outerHTML = '<li>TypeScript</li>'
+
+        //remove 
+        const lastLang = document.querySelector('li:last-child')
+        lastLang.remove()
+
+</script>
+</html>
