@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Events </title>
+</head>
+<body style="background-color: #414141; color: white;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+           
+           <!-- but this 1st approach is wrong to use event inside html so please try to avoid it 
+                bcoz in large scale it will create some problem
+        -->
+            <!-- <li>
+                <img width="200px" id="owl" 
+                src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" 
+                alt="" onclick="alert('owl')">
+            </li> -->
+            <li>
+                <img width="200px" id="owl" 
+                src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" 
+                alt="" >
+            </li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+
+<script>
+/* 1. JS me jitane bhi events run hote hai wo sab sequentially hi runn hote hai.
+2. in js, inside html events injecting is wrong way to use so in JS inside html 
+try to avoid events
+3. but on the other side in react events are used inside the html and it will more scalable approach
+but in js not.
+
+2nd approach to use event is better than 1st but still in this having some problem
+i.e. here we using onclick method so inside it we have to face some issue in future
+ because we don't get in enough features and information.
+
+*/
+// document.getElementById('owl').onclick = function(){
+//     alert('owl clicked');
+// }
+
+//previous use hoen waale approaches sirf upar jo hai wahi nahi hai ye bhi hai
+//attachEvent() - 
+//jQuery - on
+
+//events genrallly 2 type k milenge 
+// 1. broswer event - 
+// 2. envorment event - means jaise mouse ne kaha click kiya kya position thi mouse ki etc.
+
+//padhna jo event hai insab me se upar event bhaut saare aaye hai toh impotant padhna
+//type, timestamp, defaultPrevented
+//target, toElement, srcElement, currentTarget,
+
+//interview prospective purpose se 
+//clientX, clientY, screenX, (tillX, tillY )- position k liye hote hai ye dono
+//altkey, ctrlkey, shiftkey, keyCode
+
+//3rd approach  in this we use eventListener and it will not only give the onclick feature 
+//but more than that it will give that's why it is the best approach to use
+// document.getElementById('owl').addEventListener('click', () => {
+// alert('owl clicked again')
+// })
+
+
+/*isko jaane k liye true or false jo upar likha hai wo jaana padega.
+ event prpogation -  event prapogation ka 2 context hota hai 
+ 1. event public 2. event capturing
+
+ market me zadatar jo use  hota hai jo project hota hai wo hota hai
+ default se jo ki false hai apna or jisko hum event public bhi kehate hai.
+
+ but kuch scenarios me apne ko event capturing ka bhi use karna padh sakta hai.
+
+ so here 2 example is based on kaise propogation hota hai or us prpogation ko rok sakte hai
+*/
+
+// document.getElementById('owl').addEventListener('click', (event) => {
+// console.log(event);
+// }, false)
+
+/*this both code are same but id targeting is different to kaise konsi kaam karegi usse pta lagega
+niche jo 2 example use kiya hai usme 1st waala ul par lagaya hai or 2nd li par
+toh 1st wala toh normal msgdega jab usk andr k li par click karenge toh.
+
+but 2nd waala us ul ka specific li bhi mention kiya hai apn ne toh jab specific li par click hoga toh
+is case me NOTE: pehale msg li ka print hoga usk baad ul ka open hoga jab value false hogi tab.
+NOTE: 1. yaha bubbling ka case hota hai niche se upar ka approach 
+2. butagr value tru hai toh upar se niche ka approach use karega.
+*/
+
+//1st example when value is false and it is bubbling event
+// document.getElementById('images').addEventListener('click', (event) => {
+// console.log("clicked inside the ul");
+// }, false)
+//2nd example when value is false and it is bubbling event
+// document.getElementById('owl').addEventListener('click', (event) => {
+// console.log("owl clicked ");
+// }, false)
+
+/*1st and 2nd example output when value is false        
+owl clicked     
+clicked inside the ul
+*/
+
+//1st example when value is true and it is capturing event
+document.getElementById('images').addEventListener('click', (event) => {
+console.log("clicked inside the ul");
+}, true)
+//2nd example when value is true and it is capturing event
+document.getElementById('owl').addEventListener('click', (event) => {
+console.log("owl clicked ");
+}, true)
+/*1st and 2nd example output when value is true
+        
+clicked inside the ul
+owl clicked 
+
+*/
+
+
+/* ab agr hum chahte hai ki bubbling na ho innerhtml bas reh jaaye uska bubbling na ho
+or jo outer element hai wo alg reh jaaye toh us case me hum use karte hai -stopPropagation()
+jaise hum react me preventDefault() use karte hai waise hi
+*/
+// document.getElementById('owl').addEventListener('click', (event) => {
+// console.log("owl clicked ");
+// event.stopPropagation();
+// }, false)
+
+// output will be now is - owl clicked 
+//yaha ab event ho k bubbling kark upar nahi jayega
+
+document.getElementById('google').addEventListener('click', (event) => {
+console.log("google clicked ");
+event.defaultPrevented(); //ye ab render ho raha tha as link to dusare page par nahi jayega
+event.stopPropagation(); // or ye bubbling stop kar raha hai jisse parent msg nahi ayega
+}, false)
+ //output - google clicked
+
+
+ //small project in which when we click on photo photo must be remove
+doument.querySelctor('#images').addEventListener
+('click', function(e){
+    // console.log(e.target.parentNode);
+    console.log(e.target.tagName);
+    if(e.target.tagName === 'IMG'){
+        let removeIt = e.target.parentNode
+        //1st way to remove
+        removeIt.remove()
+    
+        //2nd way to remove
+        // removeIt.parentNode.removeChild(removeIt)
+    }    
+})  
+
+
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai aur code | event</title>
+</head>
+<body>
+    <h1> Chai aur code </h1>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    // it will run only once after 2 sec it will display only once
+    //2 different way to use butwork is same
+    //1st way
+    // setTimeout( function(){
+    //     console.log("shempy");
+    // }, 2000)
+
+    //2nd way
+    const sayShempy = function() {
+        console.log("shempy");
+    }
+    // setTimeout(sayShempy, 2000)
+
+    const changeText = function(){
+        document.querySelector('h1').innerHTML = 'Best JS series'
+    }
+    const changeMe = setTimeout(changeText, 2000)
+
+    // clearTimeout(changeMe); //but aise karna galt hai ki 2 sec ka de k clear kar rahe
+                                //ye kabhi bhi change nahi hone dega aise me toh usk liye aise use kare
+
+document.querySelector('#stop').addEventListener('click', function(){
+    clearTimeout(changeMe);
+    console.log("STOPPED");
+})
+
+
+</script>
+</html>
